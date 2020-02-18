@@ -28,9 +28,95 @@
 
 				<TextView
 					android:id="@+id/textView1"
+					android:layout_width="381dp"
+					android:layout_height="51dp"
+					android:layout_gravity="center"
+					android:layout_marginTop="20dp"
+					android:background="@drawable/rounded_edittext"
+					android:editable="false"
+					android:text="Establecer Ruta"
+					android:textAlignment="center"
+					android:textSize="30sp"
+					android:textStyle="bold" />
+
+				<EditText
+					android:id="@+id/nOrigen"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="Establecer Ruta" />
+					android:layout_below="@id/textView1"
+					android:layout_alignParentEnd="false"
+					android:layout_centerInParent="true"
+					android:layout_marginTop="10dp"
+					android:layout_marginEnd="19dp"
+					android:background="@drawable/rounded_edittext"
+					android:ems="10"
+					android:hint="Introduce letra Origen"
+					android:inputType="text"
+					android:textAlignment="center"
+					android:textColorHighlight="#9A050207"
+					android:textColorLink="#212121"
+					android:textSize="18sp"
+					android:textStyle="bold" />
+
+				<EditText
+					android:id="@+id/nFinal"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@+id/nOrigen"
+					android:layout_alignParentEnd="false"
+					android:layout_centerInParent="true"
+					android:layout_marginTop="12dp"
+					android:layout_marginEnd="23dp"
+					android:background="@drawable/rounded_edittext"
+					android:ems="10"
+					android:hint="Introduce letra Destino"
+					android:inputType="text"
+					android:textAlignment="center"
+					android:textColorHighlight="#9A050207"
+					android:textColorLink="#212121"
+					android:textSize="18sp"
+					android:textStyle="bold" />
+
+				<Button
+					android:id="@+id/btnBuscar"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@+id/nOrigen"
+					android:layout_centerInParent="true"
+					android:layout_marginTop="10dp"
+					android:background="@drawable/borde_redondo"
+					android:onClick="onClickbtn"
+					android:text="Buscar"
+					android:textColor="#000000"
+					android:textSize="18sp"
+					android:textStyle="normal" />
+
+				<TextView
+					android:id="@+id/txtResultado"
+					android:layout_width="match_parent"
+					android:layout_height="158dp"
+					android:layout_below="@+id/btnBuscar"
+					android:layout_centerInParent="true"
+					android:layout_marginTop="5dp"
+					android:background="@drawable/rounded_edittext"
+					android:inputType="textPersonName"
+					android:lines="5"
+					android:minLines="5"
+					android:padding="5dp"
+					android:singleLine="false"
+					android:textSize="10sp"
+					android:textStyle="bold" />
+
+				<Button
+					android:id="@+id/btnReset"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="5dp"
+					android:background="@drawable/borde_redondo"
+					android:onClick="onClickbtnReset"
+					android:text="RESET"
+					android:textStyle="bold" />
+
 			</LinearLayout>
 			
 	     	<LinearLayout android:id="@+id/tab2"
