@@ -32,12 +32,7 @@ public class MainActivity extends AppCompatActivity {
         txtFin = (EditText) findViewById(R.id.nFinal);
         txtResult = (TextView) findViewById(R.id.txtResultado);
         btnRestart = (Button) findViewById(R.id.btnReset);
-        imageMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
 
         Resources res = getResources();
 
