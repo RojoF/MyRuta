@@ -15,6 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import java.util.StringTokenizer;
+
 public class MainActivity extends AppCompatActivity {
 
     ImageView imageMap;
@@ -97,7 +99,18 @@ public class MainActivity extends AppCompatActivity {
                 txtResult.append("Ascensor-> ");
             }
         }
-        //txtResult.append(respuesta);
+
+        String contador= "";
+        StringTokenizer st = new StringTokenizer(respuesta);
+        while (st.hasMoreElements()) {
+            contador += st.nextElement();
+        }
+        int sc = contador.length();
+        sc-= 2;
+        String contadorB = Integer.toString(sc);
+        txtResult.append(contadorB);
+
+
 
     }
     public void onClickbtnReset(View v) {
