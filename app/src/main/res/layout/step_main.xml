@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="109dp"
+        android:text="RUTA ESTABLECIDA"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.shuhart.stepview.StepView
+                android:id="@+id/step_view"
+                android:layout_width="1000dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:sv_doneTextColor="@color/colorAccent"
+                app:sv_nextStepLineColor="@color/colorPrimary"
+                app:sv_nextTextColor="@color/colorPrimaryDark"
+                app:sv_selectedCircleRadius="16dp"
+                app:sv_selectedStepNumberColor="#212121"
+                app:sv_selectedTextColor="@color/colorPrimaryDark"
+                app:sv_stepLineWidth="3dp"
+                app:sv_stepNumberTextSize="20sp"
+                app:sv_stepPadding="4dp"
+                app:sv_stepViewStyle="@style/StepView" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/txtIndicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:layout_marginStart="205dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="395dp"
+        android:background="@drawable/myrect"
+        android:elevation="9dp"
+        android:padding="5dp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="311dp"
+        android:layout_height="303dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtIndicacion"
+        app:srcCompat="@drawable/myrect" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

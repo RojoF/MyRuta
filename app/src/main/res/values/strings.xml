@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Mi Ruta</string>
+    <string name="notification">Introduce datos en el origen o el final para continuar</string>
+    <string name="ruta_uno">Siga por el pasillo de radiologia hasta el final y
+        luego izquierda</string>
+    <string name="ruta_dos">Una vez ha girado hacia la izquierda vaya hasta
+        el cartel de urgencias</string>
+    <string name="ruta_tres">En urgencias continue recto y en la bifurcación
+        ir por el pasillo derecho</string>
+    <string name="ruta_cuatro">Continue por ese pasillo hasta el ascensor</string>
 </resources>
