@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
         txtOrigen.setText("");
         txtFin.setText("");
         txtResult.setText("");
+        contador ="";
         respuesta = "";
 
 
