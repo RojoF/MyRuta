@@ -25,12 +25,18 @@ public class StepViewActivity extends AppCompatActivity {
         setContentView(R.layout.step_main);
         txtContenido = (TextView) findViewById(R.id.txtIndicacion);
         imgHospi = (ImageView) findViewById(R.id.imageView);
+
+        // Se instancia el objeto StepView
         final StepView stepView = (StepView) findViewById(R.id.step_view);
+
+        // Metodo para pasar variables entre activity
         Intent intent = this.getIntent();
         Bundle extra = intent.getExtras();
         final String valor = extra.getString("message");
         final int contador_dos = Integer.parseInt(valor);
         stepView.getState()
+
+                // Array donde introducimos los states o los pasos introducidos
                 .steps(new ArrayList<String>() {{
                     for (int i = 1; i <= contador_dos; i++) {
                         add("Paso" + i);
@@ -39,12 +45,14 @@ public class StepViewActivity extends AppCompatActivity {
                 .stepsNumber(contador_dos)
                 .commit();
 
+        // Listener para cuando clickas en cada estado o paso
         stepView.setOnStepClickListener(new StepView.OnStepClickListener() {
             @Override
             public void onStepClick(int step) {
                 Toast.makeText(StepViewActivity.this, "Step " + step, Toast.LENGTH_LONG).show();
 
 
+                // Condionales para cada step
                 if (step == 0) {
 
                     stepView.go(step, true);

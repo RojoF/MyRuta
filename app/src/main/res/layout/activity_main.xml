@@ -141,7 +141,7 @@
                         android:onClick="onClickRuta"
                         android:padding="5dp"
                         android:text="CREAR RUTA"
-                        android:textColor="#000000"
+                        android:textColor="@color/colorAccent"
                         android:textStyle="bold" />
 
                 </LinearLayout>

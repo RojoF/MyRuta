@@ -30,7 +30,7 @@ public class Grafo_Android {
         grafo[n2][n1] = distancia;
     }
 
-    //retorna la posición en el arreglo de un nodo específico
+    //retorna la posición en el array de un nodo específico
     private int posicionNodo(char nodo) {
         for (int i = 0; i < nodos.length; i++) {
             if (nodos[i] == nodo) return i;
@@ -50,6 +50,7 @@ public class Grafo_Android {
         }
         tmp = listos.get(listos.indexOf(tmp));
         int distancia = tmp.distancia;
+
         // crea una pila para almacenar la ruta desde el nodo final al origen
         Stack<Nodo> pila = new Stack<Nodo>();
         while (tmp != null) {
@@ -57,6 +58,7 @@ public class Grafo_Android {
             tmp = tmp.procedencia;
         }
         String ruta = "";
+
         // recorre la pila para armar la ruta en el orden correcto
         while (!pila.isEmpty()) ruta += (pila.pop().id + " ");
         return distancia + ": " + ruta;

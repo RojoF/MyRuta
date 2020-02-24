@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView imageMap;
     Button btnOk, btnRestart, btnRuta;
-
     EditText txtOrigen, txtFin;
     TextView txtResult;
     String contador = "";
@@ -46,11 +45,14 @@ public class MainActivity extends AppCompatActivity {
         TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
         tabs.setup();
 
+        //TAB 1 contenido
         TabHost.TabSpec spec = tabs.newTabSpec("mitab1");
         spec.setContent(R.id.tab1);
         spec.setIndicator("RUTA",
                 getDrawable(android.R.drawable.ic_btn_speak_now));
         tabs.addTab(spec);
+
+        //TAB 2 contenido
         spec = tabs.newTabSpec("mitab2");
         spec.setContent(R.id.tab2);
         spec.setIndicator("MAPA",
@@ -81,9 +83,11 @@ public class MainActivity extends AppCompatActivity {
         g.agregarRuta('a', 'u', 2);
         g.agregarRuta('a', 't', 7);
 
+        // Se coje el primer caracter del string origen y fin introducidos en los textView
         char origen = txtOrigen.getText().charAt(0);
         char fin = txtFin.getText().charAt(0);
 
+        // Se analiza la ruta mas corta
         respuesta = g.encontrarRutaMinimaDijkstra(origen, fin);
         for (int i = 1; i < respuesta.length(); i++) {
             char read = respuesta.charAt(i);
@@ -110,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
             contador += st.nextElement();
         }
 
+        //medimos la longitud de la ruta por las paradas
         sc = contador.length();
         sc -= 2;
         txtResult.append(getString(R.string.ok));
@@ -119,10 +124,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickRuta(View v) {
+
+        // Condicional para obligar a no dejar vacios los textView
         if (txtOrigen.getText().toString().trim().length() > 0 &&
                 txtFin.getText().toString().trim().length() > 0) {
-
-
             Intent intent = new Intent(this, StepViewActivity.class);
             intent.putExtra("respuesta", (contador));
             intent.putExtra("message", Integer.toString(sc));
