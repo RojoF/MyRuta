@@ -41,7 +41,8 @@
                         android:background="@drawable/myrect"
                         android:text="Establecer Ruta"
                         android:textAlignment="center"
-                        android:textSize="30sp"
+                        android:textColor="#000000"
+                        android:textSize="35sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -51,8 +52,8 @@
                         android:layout_below="@id/textView1"
                         android:layout_alignParentEnd="false"
                         android:layout_centerInParent="true"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginEnd="19dp"
                         android:background="@drawable/myrect"
                         android:ems="10"
                         android:hint="Introduce letra Origen"
@@ -70,8 +71,8 @@
                         android:layout_below="@+id/nOrigen"
                         android:layout_alignParentEnd="false"
                         android:layout_centerInParent="true"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginEnd="23dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/myrect"
                         android:ems="10"
                         android:hint="Introduce letra Destino"
@@ -88,6 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/nOrigen"
                         android:layout_centerInParent="true"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/myrect"
                         android:onClick="onClickbtn"
@@ -103,7 +105,9 @@
                         android:layout_height="76dp"
                         android:layout_below="@+id/btnBuscar"
                         android:layout_centerInParent="true"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
                         android:background="@drawable/myrect"
                         android:inputType="textPersonName"
                         android:lines="5"
@@ -119,21 +123,25 @@
                         android:id="@+id/btnReset"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/myrect"
                         android:onClick="onClickbtnReset"
                         android:text="RESET"
+                        android:textColor="@color/colorPrimary"
                         android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/btRuta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/myrect"
                         android:onClick="onClickRuta"
                         android:padding="5dp"
                         android:text="CREAR RUTA"
+                        android:textColor="#000000"
                         android:textStyle="bold" />
 
                 </LinearLayout>

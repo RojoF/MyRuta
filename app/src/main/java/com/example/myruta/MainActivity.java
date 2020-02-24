@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         sc = contador.length();
         sc -= 2;
+        txtResult.append(getString(R.string.ok));
         //String valor_tres = Integer.toString(sc);
         //txtResult.append(valor_tres);
         //txtResult.append(respuesta);

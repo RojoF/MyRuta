@@ -29,7 +29,6 @@ public class StepViewActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
         Bundle extra = intent.getExtras();
         final String valor = extra.getString("message");
-        final String valor_dos = extra.getString("respuesta");
         final int contador_dos = Integer.parseInt(valor);
         stepView.getState()
                 .steps(new ArrayList<String>() {{
@@ -53,7 +52,7 @@ public class StepViewActivity extends AppCompatActivity {
                             .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
                             .commit();
                     txtContenido.setText(getString(R.string.ruta_uno));
-                    txtContenido.append(valor);
+                    //txtContenido.append(valor);
 
                     imgHospi.setImageResource(R.drawable.pasillo_uno);
                 }
