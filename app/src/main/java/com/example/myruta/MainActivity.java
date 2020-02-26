@@ -1,74 +1,97 @@
+
 package com.example.myruta;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.res.Resources;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.StringTokenizer;
 
-
 public class MainActivity extends AppCompatActivity {
+    //String donde introducimos los states
+    private static final String[] PUNTOS_SALIDA = {
+            "radiología",
+            "urgencias",
+            "traumatologia",
+            "farmacia",
+            "quirófano",
+            "sala de espera",
+            "salida",
+            "ascensor"
 
-    ImageView imageMap;
-    Button btnOk, btnRestart, btnRuta;
-    EditText txtOrigen, txtFin;
-    TextView txtResult;
+    };
+    MaterialSpinner spinner, spinner_dos;
     String contador = "";
     String respuesta = "";
+    TextView txtResult;
     int sc = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imageMap = (ImageView) findViewById(R.id.imgView);
-        btnOk = (Button) findViewById(R.id.btnBuscar);
-        txtOrigen = (EditText) findViewById(R.id.nOrigen);
-        txtFin = (EditText) findViewById(R.id.nFinal);
-        txtResult = (TextView) findViewById(R.id.txtResultado);
-        btnRestart = (Button) findViewById(R.id.btnReset);
-        btnRuta = (Button) findViewById(R.id.btRuta);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        txtResult = findViewById(R.id.txtResultado);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
 
-        Resources res = getResources();
-
-        TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
-        tabs.setup();
-
-        //TAB 1 contenido
-        TabHost.TabSpec spec = tabs.newTabSpec("mitab1");
-        spec.setContent(R.id.tab1);
-        spec.setIndicator("RUTA",
-                getDrawable(android.R.drawable.ic_btn_speak_now));
-        tabs.addTab(spec);
-
-        //TAB 2 contenido
-        spec = tabs.newTabSpec("mitab2");
-        spec.setContent(R.id.tab2);
-        spec.setIndicator("MAPA",
-                getDrawable(android.R.drawable.ic_dialog_map));
-        tabs.addTab(spec);
-
-        tabs.setCurrentTab(0);
-
-        tabs.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            public void onTabChanged(String tabId) {
-                Log.i("AndroidTabsDemo", "Pulsar tag " + tabId);
+            @Override
+            public void onClick(View view) {
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/RojoF/MyRuta")));
+                } catch (ActivityNotFoundException ignored) {
+                }
             }
         });
+
+        spinner = findViewById(R.id.spinner);
+        spinner_dos = findViewById(R.id.spinner_dos);
+        spinner.setItems(PUNTOS_SALIDA);
+        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+
+            @Override
+            public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                Snackbar.make(view, "Has seleccionado: " + item, Snackbar.LENGTH_LONG).show();
+            }
+        });
+        spinner.setOnNothingSelectedListener(new MaterialSpinner.OnNothingSelectedListener() {
+
+            @Override
+            public void onNothingSelected(MaterialSpinner spinner) {
+                Snackbar.make(spinner, "Ninguna selección", Snackbar.LENGTH_LONG).show();
+            }
+        });
+        spinner_dos.setItems(PUNTOS_SALIDA);
+        spinner_dos.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+
+            @Override
+            public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                Snackbar.make(view, "Has seleccionado: " + item, Snackbar.LENGTH_LONG).show();
+            }
+        });
+        spinner.setOnNothingSelectedListener(new MaterialSpinner.OnNothingSelectedListener() {
+
+            @Override
+            public void onNothingSelected(MaterialSpinner spinner) {
+                Snackbar.make(spinner, "Ninguna selección", Snackbar.LENGTH_LONG).show();
+            }
+        });
+
     }
 
-    public void onClickbtn(View v) {
+    public void onClickRutabtn(View v) {
 
 
         Grafo_Android g = new Grafo_Android("ruta");
@@ -84,10 +107,10 @@ public class MainActivity extends AppCompatActivity {
         g.agregarRuta('a', 't', 7);
 
         // Se coje el primer caracter del string origen y fin introducidos en los textView
-        char origen = txtOrigen.getText().charAt(0);
-        char fin = txtFin.getText().charAt(0);
+        char origen = spinner.getText().charAt(0);
+        char fin = spinner_dos.getText().charAt(0);
 
-        // Se analiza la ruta mas corta
+        // Se analiza la ruta mas corta entro nodo y nodo exponencialmente
         respuesta = g.encontrarRutaMinimaDijkstra(origen, fin);
         for (int i = 1; i < respuesta.length(); i++) {
             char read = respuesta.charAt(i);
@@ -121,34 +144,25 @@ public class MainActivity extends AppCompatActivity {
         //String valor_tres = Integer.toString(sc);
         //txtResult.append(valor_tres);
         //txtResult.append(respuesta);
+        Intent intent = new Intent(this, StepViewActivity.class);
+        intent.putExtra("respuesta", (contador));
+        intent.putExtra("message", Integer.toString(sc));
+        startActivity(intent);
     }
 
-    public void onClickRuta(View v) {
+    public void onClickMapa(View v) {
 
-        // Condicional para obligar a no dejar vacios los textView
-        if (txtOrigen.getText().toString().trim().length() > 0 &&
-                txtFin.getText().toString().trim().length() > 0) {
-            Intent intent = new Intent(this, StepViewActivity.class);
-            intent.putExtra("respuesta", (contador));
-            intent.putExtra("message", Integer.toString(sc));
-            startActivity(intent);
-        } else {
-
-            // Si esta vacío lanza notificacion Toast con un @String
-            Toast toast1 = Toast.makeText(getApplicationContext(), getString(R.string.notification), Toast.LENGTH_LONG);
-            toast1.show();
-        }
-
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
     }
+
 
     public void onClickbtnReset(View v) {
 
-        txtOrigen.setText("");
-        txtFin.setText("");
-        txtResult.setText("");
+        spinner.setText(getString(R.string.hint_uno));
+        spinner_dos.setText(getString(R.string.hint_dos));
         contador ="";
         respuesta = "";
-
 
     }
 

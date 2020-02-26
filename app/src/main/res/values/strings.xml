@@ -9,4 +9,8 @@
         ir por el pasillo derecho</string>
     <string name="ruta_cuatro">Continue por ese pasillo hasta el ascensor</string>
     <string name="ok">OK!!!</string>
+    <string name="hint_uno">Selecciona punto de Origen</string>
+    <string name="hint_dos">Selecciona punto de Llegada</string>
+    <string name="description_image_1">Planta Baja Hospital</string>
+    <string name="description_zoom_touch_close">Planta Baja Hospital</string>
 </resources>
