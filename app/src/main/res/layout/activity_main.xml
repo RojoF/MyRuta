@@ -34,6 +34,6 @@
       android:layout_gravity="bottom|end"
       android:layout_margin="@dimen/fab_margin"
       android:src="@drawable/ic_github_white_24dp"
-      app:backgroundTint="#212121" />
+      app:backgroundTint="#757575" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
