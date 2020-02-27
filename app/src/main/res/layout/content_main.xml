@@ -94,7 +94,7 @@
         android:layout_below="@+id/spinner_dos"
         android:layout_centerHorizontal="false"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="150dp"
         android:background="@drawable/myrect"
         android:backgroundTint="#000000"
         android:onClick="onClickRutabtn"
@@ -102,22 +102,6 @@
         android:text="BUSCAR RUTA"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/txtResultado"
-        android:layout_width="match_parent"
-        android:layout_height="76dp"
-        android:layout_below="@+id/btnBuscar"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/myrect"
-        android:inputType="textPersonName"
-        android:lines="5"
-        android:minLines="5"
-        android:padding="10dp"
-        android:singleLine="false"
-        android:textColor="@color/colorPrimary"
-        android:textSize="7sp"
         android:textStyle="bold" />
 
 </RelativeLayout>

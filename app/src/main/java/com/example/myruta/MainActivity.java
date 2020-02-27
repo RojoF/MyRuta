@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     MaterialSpinner spinner, spinner_dos;
     String contador = "";
     String respuesta = "";
-    TextView txtResult;
+
     int sc = 0;
 
     @Override
@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        txtResult = findViewById(R.id.txtResultado);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
 
@@ -112,7 +111,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Se analiza la ruta mas corta entro nodo y nodo exponencialmente
         respuesta = g.encontrarRutaMinimaDijkstra(origen, fin);
-        for (int i = 1; i < respuesta.length(); i++) {
+        // bucle para pintar cada paso en el textView
+        /*for (int i = 1; i < respuesta.length(); i++) {
             char read = respuesta.charAt(i);
             if (read == 'r') {
                 txtResult.append("Radiologia-> ");
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 txtResult.append("Ascensor-> ");
 
             }
-        }
+        }*/
         // metodo para quitar espacios entre caracteres
         StringTokenizer st = new StringTokenizer(respuesta);
         while (st.hasMoreElements()) {
@@ -140,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
         //medimos la longitud de la ruta por las paradas
         sc = contador.length();
         sc -= 2;
-        txtResult.append(getString(R.string.ok));
         //String valor_tres = Integer.toString(sc);
         //txtResult.append(valor_tres);
         //txtResult.append(respuesta);

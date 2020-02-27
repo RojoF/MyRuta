@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CFD8DC"
     tools:context=".MainActivity">
 
     <TextView
@@ -45,7 +46,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:sv_doneTextColor="@color/colorAccent"
-                app:sv_nextStepLineColor="@color/colorPrimary"
+                app:sv_doneStepMarkColor="@color/colorPrimaryDark"
+                app:sv_doneStepLineColor="@color/colorPrimaryDark"
+                app:sv_nextStepLineColor="@color/colorAccent"
                 app:sv_nextTextColor="@color/colorPrimaryDark"
                 app:sv_selectedCircleRadius="16dp"
                 app:sv_selectedStepNumberColor="#212121"
@@ -72,22 +75,28 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
+        tools:visibility="invisible" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="311dp"
-        android:layout_height="303dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/description_image_1"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="75dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="80dp"
+        android:padding="10dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtIndicacion"
-        app:srcCompat="@drawable/myrect" />
+        app:srcCompat="@drawable/myrect"
+        tools:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
