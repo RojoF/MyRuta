@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#212121"
+        android:background="#000000"
         android:contentDescription="@string/app_name"
         android:gravity="center"
         android:padding="80dp"

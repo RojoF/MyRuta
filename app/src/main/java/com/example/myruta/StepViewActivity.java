@@ -1,19 +1,14 @@
 package com.example.myruta;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.core.content.ContextCompat;
-
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.shuhart.stepview.StepView;
 
@@ -24,6 +19,7 @@ public class StepViewActivity extends AppCompatActivity {
 
     TextView txtContenido, txtvalor, txtvalor2;
     ImageView imgHospi;
+    Button btNext, btBack;
     private int currentStep = -1;
     int a;
 
@@ -35,7 +31,8 @@ public class StepViewActivity extends AppCompatActivity {
         imgHospi = findViewById(R.id.imageView);
         txtvalor = findViewById(R.id.textView3);
         txtvalor2 = findViewById(R.id.textView4);
-
+        btNext = findViewById(R.id.next);
+        btBack = findViewById(R.id.back);
         // Se instancia el objeto StepView
         final StepView stepView = findViewById(R.id.step_view);
 
@@ -69,6 +66,16 @@ public class StepViewActivity extends AppCompatActivity {
                     // bucle para que recorra todos los states creados
                     for (int i = 0; i <= contador_dos; i++) {
                         // Condionales para cada step
+                        if (currentStep == 0) {
+                            btNext.setText("INICIAR");
+                        }
+                        if (currentStep == 1) {
+                            btBack.setVisibility(View.VISIBLE);
+                            btNext.setText("AVANZAR");
+                        }
+                        if (currentStep == contador_dos - 1) {
+                            btNext.setText("FINALIZAR");
+                        }
                         if (currentStep == i) {
                             char read = cadena.charAt(a);
                             String c = Integer.toString(a);
@@ -124,11 +131,10 @@ public class StepViewActivity extends AppCompatActivity {
                     currentStep--;
                     txtContenido.setVisibility(View.VISIBLE);
                     imgHospi.setVisibility(View.VISIBLE);
-                    int e = currentStep +2;
+                    int e = currentStep + 2;
                     // bucle para que recorra todos los states creados
                     for (int i = currentStep; i <= contador_dos; i++) {
                         if (currentStep == i) {
-
                             char read = cadena.charAt(e);
                             String c = Integer.toString(e);
                             txtvalor2.setText(c);
@@ -168,9 +174,9 @@ public class StepViewActivity extends AppCompatActivity {
                         }
                         e--;
                     }
-                } else {
-                    stepView.done(false);
                 }
+                stepView.done(false);
+
             }
         });
 
