@@ -1,12 +1,17 @@
 package com.example.myruta;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.ContextCompat;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,8 +22,10 @@ import java.util.ArrayList;
 
 public class StepViewActivity extends AppCompatActivity {
 
-    TextView txtContenido;
+    TextView txtContenido, txtvalor, txtvalor2;
     ImageView imgHospi;
+    private int currentStep = -1;
+    int a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +33,8 @@ public class StepViewActivity extends AppCompatActivity {
         setContentView(R.layout.step_main);
         txtContenido = findViewById(R.id.txtIndicacion);
         imgHospi = findViewById(R.id.imageView);
+        txtvalor = findViewById(R.id.textView3);
+        txtvalor2 = findViewById(R.id.textView4);
 
         // Se instancia el objeto StepView
         final StepView stepView = findViewById(R.id.step_view);
@@ -47,26 +56,142 @@ public class StepViewActivity extends AppCompatActivity {
                 .stepsNumber(contador_dos)
                 .commit();
 
+        findViewById(R.id.next).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (currentStep < stepView.getStepCount() - 1) {
+                    currentStep++;
+                    //stepView.go(currentStep, true);
+                    txtContenido.setVisibility(View.VISIBLE);
+                    imgHospi.setVisibility(View.VISIBLE);
+                    a = 2;
+                    // bucle para que recorra todos los states creados
+                    for (int i = 0; i <= contador_dos; i++) {
+                        // Condionales para cada step
+                        if (currentStep == i) {
+                            char read = cadena.charAt(a);
+                            String c = Integer.toString(a);
+                            txtvalor.setText(c);
+                            if (read == 'r') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.ruta_uno));
+                                imgHospi.setImageResource(R.drawable.pasillo_uno);
+                            }
+                            if (read == 'u') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.ruta_dos));
+                                imgHospi.setImageResource(R.drawable.pasillo_dos);
+                            }
+                            if (read == 't') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.ruta_tres));
+                                imgHospi.setImageResource(R.drawable.pasillo_tres);
+                            }
+                            if (read == 'a') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.ruta_cuatro));
+                                imgHospi.setImageResource(R.drawable.pasillo_tres);
+                            }
+
+                        }
+
+                        a++;
+                    }
+                } else {
+                    stepView.done(true);
+                }
+
+            }
+        });
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            // metodo para ir hacia tras en Step
+            @Override
+            public void onClick(View v) {
+                if (currentStep > 0) {
+                    currentStep--;
+                    txtContenido.setVisibility(View.VISIBLE);
+                    imgHospi.setVisibility(View.VISIBLE);
+                    int e = currentStep +2;
+                    // bucle para que recorra todos los states creados
+                    for (int i = currentStep; i <= contador_dos; i++) {
+                        if (currentStep == i) {
+
+                            char read = cadena.charAt(e);
+                            String c = Integer.toString(e);
+                            txtvalor2.setText(c);
+                            if (read == 'r') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.ruta_uno));
+                                imgHospi.setImageResource(R.drawable.pasillo_uno);
+                            }
+                            if (read == 'u') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.ruta_dos));
+                                imgHospi.setImageResource(R.drawable.pasillo_dos);
+                            }
+                            if (read == 't') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.ruta_tres));
+                                imgHospi.setImageResource(R.drawable.pasillo_tres);
+                            }
+                            if (read == 'a') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.ruta_cuatro));
+                                imgHospi.setImageResource(R.drawable.pasillo_tres);
+                            }
+
+                        }
+                        e--;
+                    }
+                } else {
+                    stepView.done(false);
+                }
+            }
+        });
+
         // Listener para cuando clickas en cada estado o paso
         stepView.setOnStepClickListener(new StepView.OnStepClickListener() {
             @Override
             public void onStepClick(int step) {
-                Toast.makeText(StepViewActivity.this, "Step " + step, Toast.LENGTH_LONG).show();
+                //Toast.makeText(StepViewActivity.this, "Step " + step, Toast.LENGTH_LONG).show();
                 txtContenido.setVisibility(View.VISIBLE);
                 imgHospi.setVisibility(View.VISIBLE);
 
                 // bucle para que recorra todos los states creados
                 int a = 2;
                 for (int i = 0; i <= contador_dos; i++) {
-                    // Condionales para cada step
-                    //for (int a = 2; a == cadena.length(); a++) {
 
+                    // Condionales para cada step
                     if (step == i) {
                         char read = cadena.charAt(a);
-                        String cadena_dos = Integer.toString(a);
-                        //txtContenido.setText(cadena_dos);
+
                         if (read == 'r') {
-                            //txtContenido.setText("Radiologia");
+
                             stepView.go(step, true);
                             stepView.getState()
                                     .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
@@ -75,7 +200,7 @@ public class StepViewActivity extends AppCompatActivity {
                             imgHospi.setImageResource(R.drawable.pasillo_uno);
                         }
                         if (read == 'u') {
-                            //txtContenido.setText("Urgencias");
+
                             stepView.go(step, true);
                             stepView.getState()
                                     .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
@@ -84,7 +209,7 @@ public class StepViewActivity extends AppCompatActivity {
                             imgHospi.setImageResource(R.drawable.pasillo_dos);
                         }
                         if (read == 't') {
-                            //txtContenido.setText("Traumatologia");
+
                             stepView.go(step, true);
                             stepView.getState()
                                     .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
@@ -93,7 +218,7 @@ public class StepViewActivity extends AppCompatActivity {
                             imgHospi.setImageResource(R.drawable.pasillo_tres);
                         }
                         if (read == 'a') {
-                            //txtContenido.setText("Ascensor");
+
                             stepView.go(step, true);
                             stepView.getState()
                                     .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
@@ -104,31 +229,7 @@ public class StepViewActivity extends AppCompatActivity {
                     }
                     a++;
                 }
-
-                /*
-
-                            if (read == 't') {
-
-                                stepView.go(step, true);
-                                stepView.getState()
-                                        .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
-                                        .commit();
-                                txtContenido.setText(getString(R.string.ruta_tres));
-                                imgHospi.setImageResource(R.drawable.pasillo_tres);
-                            }
-                            if (read == 'a') {
-
-                                stepView.go(step, true);
-                                stepView.getState()
-                                        .selectedCircleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
-                                        .commit();
-                                txtContenido.setText(getString(R.string.ruta_tres));
-                                imgHospi.setImageResource(R.drawable.pasillo_tres);
-                            }*/
-
-
             }
-
         });
     }
 }

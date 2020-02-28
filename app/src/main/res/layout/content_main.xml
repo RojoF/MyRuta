@@ -62,7 +62,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinner_dos"
-        android:layout_marginLeft="5dp"
         android:layout_marginTop="41dp"
         android:background="@drawable/myrect"
         android:backgroundTint="#FF5252"
@@ -92,16 +91,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinner_dos"
-        android:layout_centerHorizontal="false"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="150dp"
+        android:layout_centerInParent="false"
+        android:layout_marginTop="125dp"
         android:background="@drawable/myrect"
         android:backgroundTint="#000000"
         android:onClick="onClickRutabtn"
         android:padding="5dp"
         android:text="BUSCAR RUTA"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
 </RelativeLayout>

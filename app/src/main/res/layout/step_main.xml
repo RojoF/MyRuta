@@ -8,6 +8,17 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/myrect"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@+id/txtIndicacion"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,30 +35,30 @@
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/linear_flex"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <com.shuhart.stepview.StepView
                 android:id="@+id/step_view"
-                android:layout_width="1000dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:sv_doneTextColor="@color/colorAccent"
-                app:sv_doneStepMarkColor="@color/colorPrimaryDark"
                 app:sv_doneStepLineColor="@color/colorPrimaryDark"
+                app:sv_doneStepMarkColor="@color/colorPrimaryDark"
+                app:sv_doneTextColor="@color/colorAccent"
                 app:sv_nextStepLineColor="@color/colorAccent"
                 app:sv_nextTextColor="@color/colorPrimaryDark"
                 app:sv_selectedCircleRadius="16dp"
@@ -85,11 +96,11 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/description_image_1"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="80dp"
+        android:contentDescription="@string/description_image_1"
         android:padding="10dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,5 +109,36 @@
         app:layout_constraintTop_toBottomOf="@+id/txtIndicacion"
         app:srcCompat="@drawable/myrect"
         tools:visibility="invisible" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        android:text="AVANZAR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="32dp"
+        android:text="RETROCEDER"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/myrect"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintStart_toEndOf="@+id/txtIndicacion"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

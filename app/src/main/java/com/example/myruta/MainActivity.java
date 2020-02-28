@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.jaredrummler.materialspinner.MaterialSpinnerAdapter;
 
 import java.util.StringTokenizer;
 
@@ -143,10 +145,15 @@ public class MainActivity extends AppCompatActivity {
         //String valor_tres = Integer.toString(sc);
         //txtResult.append(valor_tres);
         //txtResult.append(respuesta);
-        Intent intent = new Intent(this, StepViewActivity.class);
-        intent.putExtra("respuesta", (contador));
-        intent.putExtra("message", Integer.toString(sc));
-        startActivity(intent);
+
+        if (spinner.getText() !=null && spinner_dos.getText()!=null) {
+            Intent intent = new Intent(this, StepViewActivity.class);
+            intent.putExtra("respuesta", (contador));
+            intent.putExtra("message", Integer.toString(sc));
+            startActivity(intent);
+        } else {
+            Toast.makeText(MainActivity.this, "Selecciona origen y destino", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void onClickMapa(View v) {
@@ -160,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
         spinner.setText(getString(R.string.hint_uno));
         spinner_dos.setText(getString(R.string.hint_dos));
-        contador ="";
+        contador = "";
         respuesta = "";
 
     }
