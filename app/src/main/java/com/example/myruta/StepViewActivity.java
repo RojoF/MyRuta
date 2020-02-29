@@ -69,12 +69,14 @@ public class StepViewActivity extends AppCompatActivity {
                         if (currentStep == 0) {
                             btNext.setText("INICIAR");
                         }
-                        if (currentStep == 1) {
+                        if (currentStep > 0 && currentStep < contador_dos - 1) {
                             btBack.setVisibility(View.VISIBLE);
                             btNext.setText("AVANZAR");
                         }
-                        if (currentStep == contador_dos - 1) {
+                        if (currentStep >= contador_dos - 1) {
                             btNext.setText("FINALIZAR");
+                        } else {
+                            btNext.setText("AVANZAR");
                         }
                         if (currentStep == i) {
                             char read = cadena.charAt(a);
