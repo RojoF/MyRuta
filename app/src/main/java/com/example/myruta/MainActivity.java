@@ -25,16 +25,17 @@ public class MainActivity extends AppCompatActivity {
             "traumatologia",
             "farmacia",
             "quirófano",
-            "sala de espera",
             "salida",
-            "ascensor"
-
+            "ascensor",
+            "cuidados Intensivos",
+            "vestuario",
+            "esterización",
+            "lavabos"
     };
+
     MaterialSpinner spinner, spinner_dos;
     String contador = "";
     String respuesta = "";
-    String cadena;
-    String cadena_dos;
     int spin = -1;
     int spin_dos = -1;
     int sc = 0;
@@ -68,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
                 Snackbar.make(view, "Has seleccionado: " + item, Snackbar.LENGTH_LONG).show();
                 spin = position;
-
-
             }
         });
 
@@ -87,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
                 Snackbar.make(view, "Has seleccionado: " + item, Snackbar.LENGTH_LONG).show();
                 spin_dos = position;
-
-
             }
         });
         spinner.setOnNothingSelectedListener(new MaterialSpinner.OnNothingSelectedListener() {
@@ -111,13 +108,21 @@ public class MainActivity extends AppCompatActivity {
             g.agregarRuta('u', 't', 1);
             g.agregarRuta('u', 'a', 2);
             g.agregarRuta('t', 'a', 7);
+            g.agregarRuta('a', 'q', 6);
+            g.agregarRuta('a', 'c', 4);
+            g.agregarRuta('q', 'c', 2);
+            g.agregarRuta('q', 'e', 1);
+            g.agregarRuta('e', 'c', 3);
+            g.agregarRuta('e', 'v', 2);
+            g.agregarRuta('v', 'c', 7);
+
 
             char origen = spinner.getText().charAt(0);
             char fin = spinner_dos.getText().charAt(0);
 
             // Se analiza la ruta mas corta entro nodo y nodo exponencialmente
             respuesta = g.encontrarRutaMinimaDijkstra(origen, fin);
-
+            // quitar espacios entre caracteres
             StringTokenizer st = new StringTokenizer(respuesta);
             while (st.hasMoreElements()) {
                 contador += st.nextElement();
@@ -131,11 +136,13 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("respuesta", (contador));
             intent.putExtra("message", Integer.toString(sc));
             startActivity(intent);
+        } else {
+            Toast.makeText(MainActivity.this, "Selecciona origen y destino", Toast.LENGTH_LONG).show();
+        }
+    }
 
-            // Se coje el primer caracter del string origen y fin introducidos en los textView
-
-
-            // bucle para pintar cada paso en el textView
+    // Se coje el primer caracter del string origen y fin introducidos en los textView
+    // bucle para pintar cada paso en el textView
             /*for (int i = 1; i < respuesta.length(); i++) {
             char read = respuesta.charAt(i);
             if (read == 'r') {
@@ -155,16 +162,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }*/
-            // metodo para quitar espacios entre caracteres
-
-            //String valor_tres = Integer.toString(sc);
-            //txtResult.append(valor_tres);
-            //txtResult.append(respuesta);
-
-        } else {
-            Toast.makeText(MainActivity.this, "Selecciona origen y destino", Toast.LENGTH_LONG).show();
-        }
-    }
 
     public void onClickMapa(View v) {
 
