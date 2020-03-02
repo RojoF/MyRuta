@@ -32,8 +32,6 @@ public class StepViewActivity extends AppCompatActivity {
         setContentView(R.layout.step_main);
         txtContenido = findViewById(R.id.txtIndicacion);
         imgHospi = findViewById(R.id.imageView);
-        //txtvalor = findViewById(R.id.textView3);
-        //txtvalor2 = findViewById(R.id.textView4);
         btNext = findViewById(R.id.next);
         btBack = findViewById(R.id.back);
         // Se instancia el objeto StepView
@@ -46,7 +44,7 @@ public class StepViewActivity extends AppCompatActivity {
         final String valor = extra.getString("message");
         final int contador_dos = Integer.parseInt(valor);
 
-        if (contador_dos >4){
+        if (contador_dos > 4) {
 
             stepView.setLayoutParams(new LinearLayout.LayoutParams(1500,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -69,7 +67,6 @@ public class StepViewActivity extends AppCompatActivity {
 
                 if (currentStep < stepView.getStepCount() - 1) {
                     currentStep++;
-                    //stepView.go(currentStep, true);
                     txtContenido.setVisibility(View.VISIBLE);
                     imgHospi.setVisibility(View.VISIBLE);
                     a = 2;
@@ -85,13 +82,11 @@ public class StepViewActivity extends AppCompatActivity {
                         }
                         if (currentStep >= contador_dos - 1) {
                             btNext.setText("FINALIZAR");
-                        } else {
-                            btNext.setText("AVANZAR");
                         }
                         if (currentStep == i) {
                             char read = cadena.charAt(a);
                             String c = Integer.toString(a);
-                            //txtvalor.setText(c);
+
                             if (read == 'r') {
                                 stepView.go(currentStep, true);
                                 stepView.getState()
@@ -147,10 +142,16 @@ public class StepViewActivity extends AppCompatActivity {
 
                     // bucle para que recorra todos los states creados
                     for (int i = currentStep; i <= contador_dos; i++) {
+                        if (currentStep <= contador_dos - 1) {
+                            btNext.setText("AVANZAR");
+                        }
+                        if (currentStep == 0) {
+                            btBack.setVisibility(View.INVISIBLE);
+                        }
                         if (currentStep == i) {
                             char read = cadena.charAt(e);
                             String c = Integer.toString(e);
-                            //txtvalor2.setText(c);
+
                             if (read == 'r') {
                                 stepView.go(currentStep, true);
                                 stepView.getState()
@@ -194,7 +195,7 @@ public class StepViewActivity extends AppCompatActivity {
         });
 
         // Listener para cuando clickas en cada estado o paso
-        stepView.setOnStepClickListener(new StepView.OnStepClickListener() {
+        /*stepView.setOnStepClickListener(new StepView.OnStepClickListener() {
             @Override
             public void onStepClick(int step) {
                 //Toast.makeText(StepViewActivity.this, "Step " + step, Toast.LENGTH_LONG).show();
@@ -249,7 +250,7 @@ public class StepViewActivity extends AppCompatActivity {
                     a++;
                 }
             }
-        });
+        });*/
     }
 }
 

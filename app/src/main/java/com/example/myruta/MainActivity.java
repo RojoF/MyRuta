@@ -108,14 +108,9 @@ public class MainActivity extends AppCompatActivity {
             Grafo_Android g = new Grafo_Android("ruta");
             g.agregarRuta('r', 'u', 5);
             g.agregarRuta('r', 't', 3);
-            g.agregarRuta('u', 'r', 5);
             g.agregarRuta('u', 't', 1);
             g.agregarRuta('u', 'a', 2);
-            g.agregarRuta('t', 'r', 3);
-            g.agregarRuta('t', 'u', 1);
             g.agregarRuta('t', 'a', 7);
-            g.agregarRuta('a', 'u', 2);
-            g.agregarRuta('a', 't', 7);
 
             char origen = spinner.getText().charAt(0);
             char fin = spinner_dos.getText().charAt(0);
