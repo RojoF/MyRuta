@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/RojoF/MyRuta")));
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://github.com/RojoF/MyRuta")));
                 } catch (ActivityNotFoundException ignored) {
                 }
             }
@@ -137,7 +138,8 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("message", Integer.toString(sc));
             startActivity(intent);
         } else {
-            Toast.makeText(MainActivity.this, "Selecciona origen y destino", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this,
+                    "Selecciona origen y destino", Toast.LENGTH_LONG).show();
         }
     }
 
