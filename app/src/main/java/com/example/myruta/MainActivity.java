@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +14,6 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.jaredrummler.materialspinner.MaterialSpinner;
-import com.jaredrummler.materialspinner.MaterialSpinnerAdapter;
 
 import java.util.StringTokenizer;
 
@@ -35,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
     MaterialSpinner spinner, spinner_dos;
     String contador = "";
     String respuesta = "";
-
+    String cadena;
+    String cadena_dos;
+    int spin = -1;
+    int spin_dos = -1;
     int sc = 0;
 
     @Override
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -65,8 +67,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
                 Snackbar.make(view, "Has seleccionado: " + item, Snackbar.LENGTH_LONG).show();
+                spin = position;
+
+
             }
         });
+
         spinner.setOnNothingSelectedListener(new MaterialSpinner.OnNothingSelectedListener() {
 
             @Override
@@ -80,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
                 Snackbar.make(view, "Has seleccionado: " + item, Snackbar.LENGTH_LONG).show();
+                spin_dos = position;
+
+
             }
         });
         spinner.setOnNothingSelectedListener(new MaterialSpinner.OnNothingSelectedListener() {
@@ -94,27 +103,45 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickRutabtn(View v) {
 
+        if (spin >= 0 && spin_dos >= 0) {
 
-        Grafo_Android g = new Grafo_Android("ruta");
-        g.agregarRuta('r', 'u', 5);
-        g.agregarRuta('r', 't', 3);
-        g.agregarRuta('u', 'r', 5);
-        g.agregarRuta('u', 't', 1);
-        g.agregarRuta('u', 'a', 2);
-        g.agregarRuta('t', 'r', 3);
-        g.agregarRuta('t', 'u', 1);
-        g.agregarRuta('t', 'a', 7);
-        g.agregarRuta('a', 'u', 2);
-        g.agregarRuta('a', 't', 7);
+            Grafo_Android g = new Grafo_Android("ruta");
+            g.agregarRuta('r', 'u', 5);
+            g.agregarRuta('r', 't', 3);
+            g.agregarRuta('u', 'r', 5);
+            g.agregarRuta('u', 't', 1);
+            g.agregarRuta('u', 'a', 2);
+            g.agregarRuta('t', 'r', 3);
+            g.agregarRuta('t', 'u', 1);
+            g.agregarRuta('t', 'a', 7);
+            g.agregarRuta('a', 'u', 2);
+            g.agregarRuta('a', 't', 7);
 
-        // Se coje el primer caracter del string origen y fin introducidos en los textView
-        char origen = spinner.getText().charAt(0);
-        char fin = spinner_dos.getText().charAt(0);
+            char origen = spinner.getText().charAt(0);
+            char fin = spinner_dos.getText().charAt(0);
 
-        // Se analiza la ruta mas corta entro nodo y nodo exponencialmente
-        respuesta = g.encontrarRutaMinimaDijkstra(origen, fin);
-        // bucle para pintar cada paso en el textView
-        /*for (int i = 1; i < respuesta.length(); i++) {
+            // Se analiza la ruta mas corta entro nodo y nodo exponencialmente
+            respuesta = g.encontrarRutaMinimaDijkstra(origen, fin);
+
+            StringTokenizer st = new StringTokenizer(respuesta);
+            while (st.hasMoreElements()) {
+                contador += st.nextElement();
+            }
+
+            //medimos la longitud de la ruta por las paradas
+            sc = contador.length();
+            sc -= 2;
+
+            Intent intent = new Intent(this, StepViewActivity.class);
+            intent.putExtra("respuesta", (contador));
+            intent.putExtra("message", Integer.toString(sc));
+            startActivity(intent);
+
+            // Se coje el primer caracter del string origen y fin introducidos en los textView
+
+
+            // bucle para pintar cada paso en el textView
+            /*for (int i = 1; i < respuesta.length(); i++) {
             char read = respuesta.charAt(i);
             if (read == 'r') {
                 txtResult.append("Radiologia-> ");
@@ -133,24 +160,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }*/
-        // metodo para quitar espacios entre caracteres
-        StringTokenizer st = new StringTokenizer(respuesta);
-        while (st.hasMoreElements()) {
-            contador += st.nextElement();
-        }
+            // metodo para quitar espacios entre caracteres
 
-        //medimos la longitud de la ruta por las paradas
-        sc = contador.length();
-        sc -= 2;
-        //String valor_tres = Integer.toString(sc);
-        //txtResult.append(valor_tres);
-        //txtResult.append(respuesta);
+            //String valor_tres = Integer.toString(sc);
+            //txtResult.append(valor_tres);
+            //txtResult.append(respuesta);
 
-        if (spinner.getText() !=null && spinner_dos.getText()!=null) {
-            Intent intent = new Intent(this, StepViewActivity.class);
-            intent.putExtra("respuesta", (contador));
-            intent.putExtra("message", Integer.toString(sc));
-            startActivity(intent);
         } else {
             Toast.makeText(MainActivity.this, "Selecciona origen y destino", Toast.LENGTH_LONG).show();
         }
@@ -162,14 +177,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     public void onClickbtnReset(View v) {
 
         spinner.setText(getString(R.string.hint_uno));
         spinner_dos.setText(getString(R.string.hint_dos));
         contador = "";
         respuesta = "";
+        spin = -1;
+        spin_dos = -1;
 
     }
-
 }

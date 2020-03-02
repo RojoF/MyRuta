@@ -95,6 +95,8 @@
         android:layout_marginTop="125dp"
         android:background="@drawable/myrect"
         android:backgroundTint="#000000"
+        android:enabled="true"
+        android:fadeScrollbars="false"
         android:onClick="onClickRutabtn"
         android:padding="5dp"
         android:text="BUSCAR RUTA"

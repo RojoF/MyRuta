@@ -3,8 +3,10 @@ package com.example.myruta;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,11 +19,12 @@ import java.util.ArrayList;
 
 public class StepViewActivity extends AppCompatActivity {
 
-    TextView txtContenido, txtvalor, txtvalor2;
+    TextView txtContenido;
     ImageView imgHospi;
     Button btNext, btBack;
     private int currentStep = -1;
     int a;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,8 @@ public class StepViewActivity extends AppCompatActivity {
         setContentView(R.layout.step_main);
         txtContenido = findViewById(R.id.txtIndicacion);
         imgHospi = findViewById(R.id.imageView);
-        txtvalor = findViewById(R.id.textView3);
-        txtvalor2 = findViewById(R.id.textView4);
+        //txtvalor = findViewById(R.id.textView3);
+        //txtvalor2 = findViewById(R.id.textView4);
         btNext = findViewById(R.id.next);
         btBack = findViewById(R.id.back);
         // Se instancia el objeto StepView
@@ -42,6 +45,13 @@ public class StepViewActivity extends AppCompatActivity {
         final String cadena = extra.getString("respuesta");
         final String valor = extra.getString("message");
         final int contador_dos = Integer.parseInt(valor);
+
+        if (contador_dos >4){
+
+            stepView.setLayoutParams(new LinearLayout.LayoutParams(1500,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+        }
 
         stepView.getState()
                 // Array donde introducimos los states o los pasos introducidos
@@ -81,7 +91,7 @@ public class StepViewActivity extends AppCompatActivity {
                         if (currentStep == i) {
                             char read = cadena.charAt(a);
                             String c = Integer.toString(a);
-                            txtvalor.setText(c);
+                            //txtvalor.setText(c);
                             if (read == 'r') {
                                 stepView.go(currentStep, true);
                                 stepView.getState()
@@ -134,12 +144,13 @@ public class StepViewActivity extends AppCompatActivity {
                     txtContenido.setVisibility(View.VISIBLE);
                     imgHospi.setVisibility(View.VISIBLE);
                     int e = currentStep + 2;
+
                     // bucle para que recorra todos los states creados
                     for (int i = currentStep; i <= contador_dos; i++) {
                         if (currentStep == i) {
                             char read = cadena.charAt(e);
                             String c = Integer.toString(e);
-                            txtvalor2.setText(c);
+                            //txtvalor2.setText(c);
                             if (read == 'r') {
                                 stepView.go(currentStep, true);
                                 stepView.getState()
