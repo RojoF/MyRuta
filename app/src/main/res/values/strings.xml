@@ -4,8 +4,7 @@
     <string name="ruta_uno">Radiologia</string>
     <string name="ruta_dos">Urgencias</string>
     <string name="ruta_tres">Traumatologia</string>
-    <string name="ruta_cuatro">Ascensor</string>
-    <string name="ok">OK!!!</string>
+    <string name="ruta_cuatro">Ascensor\nSube por el Ascensor a la 2a planta</string>
     <string name="hint_uno">Selecciona punto de Origen</string>
     <string name="hint_dos">Selecciona punto de Llegada</string>
     <string name="description_image_1">Planta Baja Hospital</string>

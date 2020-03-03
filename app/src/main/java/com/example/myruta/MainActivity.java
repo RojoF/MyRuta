@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             g.agregarRuta('a', 'c', 4);
             g.agregarRuta('q', 'e', 1);
             g.agregarRuta('q', 'c', 2);
-            g.agregarRuta('c', 'e', 3);
+            g.agregarRuta('c', 'e', 2);
             g.agregarRuta('e', 'v', 2);
             g.agregarRuta('v', 'c', 2);
 
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
             //medimos la longitud de la ruta por las paradas
             sc = contador.length();
-            sc -= 2;
+            //sc -= 2;
 
             Intent intent = new Intent(this, StepViewActivity.class);
             intent.putExtra("respuesta", (contador));

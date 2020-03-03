@@ -61,7 +61,7 @@ public class Grafo_Android {
 
         // recorre la pila para armar la ruta en el orden correcto
         while (!pila.isEmpty()) ruta += (pila.pop().id + " ");
-        return distancia + ": " + ruta;
+        return  ruta;
     }
 
     // encuentra la ruta más corta desde el nodo inicial a todos los demás

@@ -68,7 +68,7 @@ public class StepViewActivity extends AppCompatActivity {
                     currentStep++;
                     txtContenido.setVisibility(View.VISIBLE);
                     imgHospi.setVisibility(View.VISIBLE);
-                    a = 2;
+                    a = 0;
                     // bucle para que recorra todos los states creados
                     for (int i = 0; i <= contador_dos; i++) {
                         // Condionales para cada step
@@ -156,7 +156,7 @@ public class StepViewActivity extends AppCompatActivity {
                     currentStep--;
                     txtContenido.setVisibility(View.VISIBLE);
                     imgHospi.setVisibility(View.VISIBLE);
-                    int e = currentStep + 2;
+                    int e = currentStep;
 
                     // bucle para que recorra todos los states creados
                     for (int i = currentStep; i <= contador_dos; i++) {
