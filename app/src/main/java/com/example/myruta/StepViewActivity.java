@@ -122,6 +122,24 @@ public class StepViewActivity extends AppCompatActivity {
                                 txtContenido.setText(getString(R.string.ruta_cuatro));
                                 imgHospi.setImageResource(R.drawable.pasillo_tres);
                             }
+                            if (read == 'q') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor
+                                                (getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.ruta_cuatro));
+                                imgHospi.setImageResource(R.drawable.pasillo_tres);
+                            }
+                            if (read == 'c') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor
+                                                (getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.ruta_cuatro));
+                                imgHospi.setImageResource(R.drawable.pasillo_tres);
+                            }
                         }
                         a++;
                     }
@@ -180,6 +198,15 @@ public class StepViewActivity extends AppCompatActivity {
                                 imgHospi.setImageResource(R.drawable.pasillo_tres);
                             }
                             if (read == 'a') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor
+                                                (getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.ruta_cuatro));
+                                imgHospi.setImageResource(R.drawable.pasillo_tres);
+                            }
+                            if (read == 'q') {
                                 stepView.go(currentStep, true);
                                 stepView.getState()
                                         .selectedCircleColor(ContextCompat.getColor

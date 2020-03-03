@@ -38,7 +38,6 @@
         app:ms_dropdown_height="wrap_content"
         app:ms_dropdown_max_height="350dp"
         app:ms_hint="@string/hint_uno"
-        app:ms_hint_color="@color/colorAccent"
         app:ms_text_color="#000000" />
 
     <com.jaredrummler.materialspinner.MaterialSpinner
@@ -54,7 +53,6 @@
         app:ms_dropdown_height="wrap_content"
         app:ms_dropdown_max_height="350dp"
         app:ms_hint="@string/hint_dos"
-        app:ms_hint_color="@color/colorAccent"
         app:ms_text_color="#000000" />
 
     <Button

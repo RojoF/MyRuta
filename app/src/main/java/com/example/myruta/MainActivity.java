@@ -25,12 +25,10 @@ public class MainActivity extends AppCompatActivity {
             "traumatologia",
             "farmacia",
             "quirófano",
-            "salida",
             "ascensor",
             "cuidados Intensivos",
             "vestuario",
-            "esterización",
-            "lavabos"
+            "esterización"
     };
 
     MaterialSpinner spinner, spinner_dos;
@@ -103,19 +101,21 @@ public class MainActivity extends AppCompatActivity {
 
         if (spin >= 0 && spin_dos >= 0) {
 
-            Grafo_Android g = new Grafo_Android("ruta");
+            Grafo_Android g = new Grafo_Android("rutafqcve");
             g.agregarRuta('r', 'u', 5);
             g.agregarRuta('r', 't', 3);
             g.agregarRuta('u', 't', 1);
             g.agregarRuta('u', 'a', 2);
-            g.agregarRuta('t', 'a', 7);
-            g.agregarRuta('a', 'q', 6);
+            g.agregarRuta('u', 'f', 4);
+            g.agregarRuta('a', 't', 7);
+            g.agregarRuta('a', 'f', 8);
+            g.agregarRuta('a', 'q', 8);
             g.agregarRuta('a', 'c', 4);
-            g.agregarRuta('q', 'c', 2);
             g.agregarRuta('q', 'e', 1);
-            g.agregarRuta('e', 'c', 3);
+            g.agregarRuta('q', 'c', 2);
+            g.agregarRuta('c', 'e', 3);
             g.agregarRuta('e', 'v', 2);
-            g.agregarRuta('v', 'c', 7);
+            g.agregarRuta('v', 'c', 2);
 
 
             char origen = spinner.getText().charAt(0);
