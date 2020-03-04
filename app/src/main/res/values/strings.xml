@@ -1,10 +1,22 @@
 <resources>
     <string name="app_name">Mi Ruta</string>
     <string name="notification">Introduce datos en el origen o el final para continuar</string>
-    <string name="ruta_uno">Radiologia</string>
-    <string name="ruta_dos">Urgencias</string>
-    <string name="ruta_tres">Traumatologia</string>
-    <string name="ruta_cuatro">Ascensor\nSube por el Ascensor a la 2a planta</string>
+    <string name="radiologia">Radiología</string>
+    <string name="urgencias">Urgencias</string>
+    <string name="traumatologia">Traumatología</string>
+    <string name="ascensor">Ascensor</string>
+    <string name="quirofano">Quirófano</string>
+    <string name="esterilizacion">Esterilización</string>
+    <string name="vestuario">Vestuario</string>
+    <string name="farmacia">Farmacia</string>
+    <string name="cuidados">UVI\nCuidados Intensivos</string>
+    <string name="secuencia">rutafqcve</string>
+    <string name="iniciar">INICIAR</string>
+    <string name="avanzar">AVANZAR</string>
+    <string name="finalizar">FINALIZAR</string>
+    <string name="seleccion">Selecciona origen y destino</string>
+    <string name="seleccion_spin">Has seleccionado: </string>
+    <string name="seleccion_spin_dos">Ninguna selección</string>
     <string name="hint_uno">Selecciona punto de Origen</string>
     <string name="hint_dos">Selecciona punto de Llegada</string>
     <string name="description_image_1">Planta Baja Hospital</string>

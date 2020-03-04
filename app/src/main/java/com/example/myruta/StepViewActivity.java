@@ -2,10 +2,13 @@ package com.example.myruta;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.autofill.OnClickAction;
 import android.view.View;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +26,6 @@ public class StepViewActivity extends AppCompatActivity {
     Button btNext, btBack;
     private int currentStep = -1;
     int a;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +50,15 @@ public class StepViewActivity extends AppCompatActivity {
             stepView.setLayoutParams(new LinearLayout.LayoutParams(1500,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
+
+
         }
 
         stepView.getState()
                 // Array donde introducimos los states o los pasos introducidos
                 .steps(new ArrayList<String>() {{
                     for (int i = 1; i <= contador_dos; i++) {
-                        add("Paso" + i);
+                        add("Paso " + i);
                     }
                 }})
                 .stepsNumber(contador_dos)
@@ -69,19 +73,33 @@ public class StepViewActivity extends AppCompatActivity {
                     txtContenido.setVisibility(View.VISIBLE);
                     imgHospi.setVisibility(View.VISIBLE);
                     a = 0;
+
                     // bucle para que recorra todos los states creados
                     for (int i = 0; i <= contador_dos; i++) {
-                        // Condionales para cada step
+
+                        // Condicionales para que se desplace el scroll hacia right
+                        if (currentStep >= 3) {
+                            HorizontalScrollView sv = findViewById(R.id.horizontalScrollView);
+                            sv.smoothScrollTo(400, sv.getRight());
+                        }
+                        if (currentStep >= 4) {
+                            HorizontalScrollView sv = findViewById(R.id.horizontalScrollView);
+                            sv.smoothScrollTo(800, sv.getRight());
+                        }
+
+                        // Condionales para activar/desactivar boton de cada step
                         if (currentStep == 0) {
-                            btNext.setText("INICIAR");
+                            btNext.setText(getString(R.string.iniciar));
                         }
                         if (currentStep > 0 && currentStep < contador_dos - 1) {
                             btBack.setVisibility(View.VISIBLE);
-                            btNext.setText("AVANZAR");
+                            btNext.setText(getString(R.string.avanzar));
                         }
                         if (currentStep >= contador_dos - 1) {
-                            btNext.setText("FINALIZAR");
+                            btNext.setText(getString(R.string.finalizar));
                         }
+
+                        // fijar cada paso con imagen y String
                         if (currentStep == i) {
                             char read = cadena.charAt(a);
                             String c = Integer.toString(a);
@@ -92,7 +110,7 @@ public class StepViewActivity extends AppCompatActivity {
                                         .selectedCircleColor(ContextCompat.getColor
                                                 (getApplicationContext(), R.color.colorAccent))
                                         .commit();
-                                txtContenido.setText(getString(R.string.ruta_uno));
+                                txtContenido.setText(getString(R.string.radiologia));
                                 imgHospi.setImageResource(R.drawable.pasillo_uno);
                             }
                             if (read == 'u') {
@@ -101,7 +119,7 @@ public class StepViewActivity extends AppCompatActivity {
                                         .selectedCircleColor(ContextCompat.getColor
                                                 (getApplicationContext(), R.color.colorAccent))
                                         .commit();
-                                txtContenido.setText(getString(R.string.ruta_dos));
+                                txtContenido.setText(getString(R.string.urgencias));
                                 imgHospi.setImageResource(R.drawable.pasillo_dos);
                             }
                             if (read == 't') {
@@ -110,7 +128,7 @@ public class StepViewActivity extends AppCompatActivity {
                                         .selectedCircleColor(ContextCompat.getColor
                                                 (getApplicationContext(), R.color.colorAccent))
                                         .commit();
-                                txtContenido.setText(getString(R.string.ruta_tres));
+                                txtContenido.setText(getString(R.string.traumatologia));
                                 imgHospi.setImageResource(R.drawable.pasillo_tres);
                             }
                             if (read == 'a') {
@@ -119,8 +137,8 @@ public class StepViewActivity extends AppCompatActivity {
                                         .selectedCircleColor(ContextCompat.getColor
                                                 (getApplicationContext(), R.color.colorAccent))
                                         .commit();
-                                txtContenido.setText(getString(R.string.ruta_cuatro));
-                                imgHospi.setImageResource(R.drawable.pasillo_tres);
+                                txtContenido.setText(getString(R.string.ascensor));
+                                imgHospi.setImageResource(R.drawable.ascensor);
                             }
                             if (read == 'q') {
                                 stepView.go(currentStep, true);
@@ -128,8 +146,8 @@ public class StepViewActivity extends AppCompatActivity {
                                         .selectedCircleColor(ContextCompat.getColor
                                                 (getApplicationContext(), R.color.colorAccent))
                                         .commit();
-                                txtContenido.setText(getString(R.string.ruta_cuatro));
-                                imgHospi.setImageResource(R.drawable.pasillo_tres);
+                                txtContenido.setText(getString(R.string.quirofano));
+                                imgHospi.setImageResource(R.drawable.quirofano);
                             }
                             if (read == 'c') {
                                 stepView.go(currentStep, true);
@@ -137,8 +155,35 @@ public class StepViewActivity extends AppCompatActivity {
                                         .selectedCircleColor(ContextCompat.getColor
                                                 (getApplicationContext(), R.color.colorAccent))
                                         .commit();
-                                txtContenido.setText(getString(R.string.ruta_cuatro));
-                                imgHospi.setImageResource(R.drawable.pasillo_tres);
+                                txtContenido.setText(getString(R.string.cuidados));
+                                imgHospi.setImageResource(R.drawable.cuidados_intensivos);
+                            }
+                            if (read == 'f') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor
+                                                (getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.farmacia));
+                                imgHospi.setImageResource(R.drawable.farmacia);
+                            }
+                            if (read == 'e') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor
+                                                (getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.esterilizacion));
+                                imgHospi.setImageResource(R.drawable.esterilizacion);
+                            }
+                            if (read == 'v') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor
+                                                (getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.vestuario));
+                                imgHospi.setImageResource(R.drawable.vestuario);
                             }
                         }
                         a++;
@@ -160,12 +205,30 @@ public class StepViewActivity extends AppCompatActivity {
 
                     // bucle para que recorra todos los states creados
                     for (int i = currentStep; i <= contador_dos; i++) {
+
+                        // Condicionales para que se desplace el scroll hacia left
+                        if (currentStep <= 4) {
+                            HorizontalScrollView sv = findViewById(R.id.horizontalScrollView);
+                            sv.smoothScrollTo(800, sv.getRight());
+                        }
+                        if (currentStep <= 3) {
+                            HorizontalScrollView sv = findViewById(R.id.horizontalScrollView);
+                            sv.smoothScrollTo(400, sv.getRight());
+                        }
+                        if (currentStep <= 2) {
+                            HorizontalScrollView sv = findViewById(R.id.horizontalScrollView);
+                            sv.smoothScrollTo(0, sv.getRight());
+                        }
+
+                        // Condionales para activar/desactivar boton de cada step
                         if (currentStep <= contador_dos - 1) {
-                            btNext.setText("AVANZAR");
+                            btNext.setText(getString(R.string.avanzar));
                         }
                         if (currentStep == 0) {
                             btBack.setVisibility(View.INVISIBLE);
                         }
+
+                        // fijar cada paso con imagen y String
                         if (currentStep == i) {
                             char read = cadena.charAt(e);
                             String c = Integer.toString(e);
@@ -176,7 +239,7 @@ public class StepViewActivity extends AppCompatActivity {
                                         .selectedCircleColor(ContextCompat.getColor
                                                 (getApplicationContext(), R.color.colorAccent))
                                         .commit();
-                                txtContenido.setText(getString(R.string.ruta_uno));
+                                txtContenido.setText(getString(R.string.radiologia));
                                 imgHospi.setImageResource(R.drawable.pasillo_uno);
                             }
                             if (read == 'u') {
@@ -185,7 +248,7 @@ public class StepViewActivity extends AppCompatActivity {
                                         .selectedCircleColor(ContextCompat.getColor
                                                 (getApplicationContext(), R.color.colorAccent))
                                         .commit();
-                                txtContenido.setText(getString(R.string.ruta_dos));
+                                txtContenido.setText(getString(R.string.urgencias));
                                 imgHospi.setImageResource(R.drawable.pasillo_dos);
                             }
                             if (read == 't') {
@@ -194,7 +257,7 @@ public class StepViewActivity extends AppCompatActivity {
                                         .selectedCircleColor(ContextCompat.getColor
                                                 (getApplicationContext(), R.color.colorAccent))
                                         .commit();
-                                txtContenido.setText(getString(R.string.ruta_tres));
+                                txtContenido.setText(getString(R.string.traumatologia));
                                 imgHospi.setImageResource(R.drawable.pasillo_tres);
                             }
                             if (read == 'a') {
@@ -203,8 +266,8 @@ public class StepViewActivity extends AppCompatActivity {
                                         .selectedCircleColor(ContextCompat.getColor
                                                 (getApplicationContext(), R.color.colorAccent))
                                         .commit();
-                                txtContenido.setText(getString(R.string.ruta_cuatro));
-                                imgHospi.setImageResource(R.drawable.pasillo_tres);
+                                txtContenido.setText(getString(R.string.ascensor));
+                                imgHospi.setImageResource(R.drawable.ascensor);
                             }
                             if (read == 'q') {
                                 stepView.go(currentStep, true);
@@ -212,8 +275,44 @@ public class StepViewActivity extends AppCompatActivity {
                                         .selectedCircleColor(ContextCompat.getColor
                                                 (getApplicationContext(), R.color.colorAccent))
                                         .commit();
-                                txtContenido.setText(getString(R.string.ruta_cuatro));
-                                imgHospi.setImageResource(R.drawable.pasillo_tres);
+                                txtContenido.setText(getString(R.string.quirofano));
+                                imgHospi.setImageResource(R.drawable.quirofano);
+                            }
+                            if (read == 'c') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor
+                                                (getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.cuidados));
+                                imgHospi.setImageResource(R.drawable.cuidados_intensivos);
+                            }
+                            if (read == 'f') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor
+                                                (getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.farmacia));
+                                imgHospi.setImageResource(R.drawable.farmacia);
+                            }
+                            if (read == 'e') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor
+                                                (getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.esterilizacion));
+                                imgHospi.setImageResource(R.drawable.esterilizacion);
+                            }
+                            if (read == 'v') {
+                                stepView.go(currentStep, true);
+                                stepView.getState()
+                                        .selectedCircleColor(ContextCompat.getColor
+                                                (getApplicationContext(), R.color.colorAccent))
+                                        .commit();
+                                txtContenido.setText(getString(R.string.vestuario));
+                                imgHospi.setImageResource(R.drawable.vestuario);
                             }
 
                         }
@@ -223,8 +322,10 @@ public class StepViewActivity extends AppCompatActivity {
                 stepView.done(false);
             }
         });
+    }
+}
 
-        // Listener para cuando clickas en cada estado o paso
+// Listener para cuando clickas (Modo Tactil) en cada estado o paso avance el step
         /*stepView.setOnStepClickListener(new StepView.OnStepClickListener() {
             @Override
             public void onStepClick(int step) {
@@ -259,32 +360,11 @@ public class StepViewActivity extends AppCompatActivity {
                                     .commit();
                             txtContenido.setText(getString(R.string.ruta_dos));
                             imgHospi.setImageResource(R.drawable.pasillo_dos);
-                        }
-                        if (read == 't') {
-
-                            stepView.go(step, true);
-                            stepView.getState()
-                                    .selectedCircleColor(ContextCompat.getColor
-                                    (getApplicationContext(), R.color.colorAccent))
-                                    .commit();
-                            txtContenido.setText(getString(R.string.ruta_tres));
-                            imgHospi.setImageResource(R.drawable.pasillo_tres);
-                        }
-                        if (read == 'a') {
-
-                            stepView.go(step, true);
-                            stepView.getState()
-                                    .selectedCircleColor(ContextCompat.getColor
-                                    (getApplicationContext(), R.color.colorAccent))
-                                    .commit();
-                            txtContenido.setText(getString(R.string.ruta_cuatro));
-                            imgHospi.setImageResource(R.drawable.pasillo_tres);
-                        }
+                     }
                     }
                     a++;
                 }
             }
         });*/
-    }
-}
+
 

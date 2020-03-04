@@ -18,6 +18,7 @@ import com.jaredrummler.materialspinner.MaterialSpinner;
 import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity {
+
     //String donde introducimos los states
     private static final String[] PUNTOS_SALIDA = {
             "radiología",
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                Snackbar.make(view, "Has seleccionado: " + item, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, getString(R.string.seleccion_spin) + item, Snackbar.LENGTH_LONG).show();
                 spin = position;
             }
         });
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(MaterialSpinner spinner) {
-                Snackbar.make(spinner, "Ninguna selección", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(spinner, getString(R.string.seleccion_spin_dos), Snackbar.LENGTH_LONG).show();
             }
         });
         spinner_dos.setItems(PUNTOS_SALIDA);
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                Snackbar.make(view, "Has seleccionado: " + item, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, getString(R.string.seleccion_spin) + item, Snackbar.LENGTH_LONG).show();
                 spin_dos = position;
             }
         });
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(MaterialSpinner spinner) {
-                Snackbar.make(spinner, "Ninguna selección", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(spinner, getString(R.string.seleccion_spin_dos), Snackbar.LENGTH_LONG).show();
             }
         });
 
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (spin >= 0 && spin_dos >= 0) {
 
-            Grafo_Android g = new Grafo_Android("rutafqcve");
+            Grafo_Android g = new Grafo_Android(getString(R.string.secuencia));
             g.agregarRuta('r', 'u', 5);
             g.agregarRuta('r', 't', 3);
             g.agregarRuta('u', 't', 1);
@@ -117,12 +118,13 @@ public class MainActivity extends AppCompatActivity {
             g.agregarRuta('e', 'v', 2);
             g.agregarRuta('v', 'c', 2);
 
-
+            // Se coje el primer caracter de la secuencia
             char origen = spinner.getText().charAt(0);
             char fin = spinner_dos.getText().charAt(0);
 
             // Se analiza la ruta mas corta entro nodo y nodo exponencialmente
             respuesta = g.encontrarRutaMinimaDijkstra(origen, fin);
+
             // quitar espacios entre caracteres
             StringTokenizer st = new StringTokenizer(respuesta);
             while (st.hasMoreElements()) {
@@ -133,19 +135,18 @@ public class MainActivity extends AppCompatActivity {
             sc = contador.length();
             //sc -= 2;
 
+            //metodo intent para pasar valor variables entre activitys
             Intent intent = new Intent(this, StepViewActivity.class);
             intent.putExtra("respuesta", (contador));
             intent.putExtra("message", Integer.toString(sc));
             startActivity(intent);
         } else {
-            Toast.makeText(MainActivity.this,
-                    "Selecciona origen y destino", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, getString(R.string.seleccion), Toast.LENGTH_LONG).show();
         }
     }
-
-    // Se coje el primer caracter del string origen y fin introducidos en los textView
-    // bucle para pintar cada paso en el textView
-            /*for (int i = 1; i < respuesta.length(); i++) {
+            /* Se coje el primer caracter del string origen y fin introducidos en los textView
+            bucle para pintar cada paso en el textView
+            for (int i = 1; i < respuesta.length(); i++) {
             char read = respuesta.charAt(i);
             if (read == 'r') {
                 txtResult.append("Radiologia-> ");
