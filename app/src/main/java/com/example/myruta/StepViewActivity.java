@@ -2,7 +2,7 @@ package com.example.myruta;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.service.autofill.OnClickAction;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
@@ -35,6 +35,7 @@ public class StepViewActivity extends AppCompatActivity {
         imgHospi = findViewById(R.id.imageView);
         btNext = findViewById(R.id.next);
         btBack = findViewById(R.id.back);
+
         // Se instancia el objeto StepView
         final StepView stepView = findViewById(R.id.step_view);
 
@@ -50,8 +51,6 @@ public class StepViewActivity extends AppCompatActivity {
             stepView.setLayoutParams(new LinearLayout.LayoutParams(1500,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
-
-
         }
 
         stepView.getState()

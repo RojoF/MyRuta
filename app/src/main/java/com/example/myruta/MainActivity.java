@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity {
 
-    //String donde introducimos los states
+    //String donde introducimos todos los states (paradas)
     private static final String[] PUNTOS_SALIDA = {
             "radiología",
             "urgencias",
@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickRutabtn(View v) {
 
+        // Condicional para que continue solo si hay datos seleccionados en los spinners
         if (spin >= 0 && spin_dos >= 0) {
 
             //Se instancia la clase Grafo_android para llamar al metodo agregarRuta
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             g.agregarRuta('e', 'v', 2);
             g.agregarRuta('v', 'c', 2);
 
-            // Se coje el primer caracter de la secuencia
+            // Se coje el primer caracter de la secuencia en cada spinner
             char origen = spinner.getText().charAt(0);
             char fin = spinner_dos.getText().charAt(0);
 
