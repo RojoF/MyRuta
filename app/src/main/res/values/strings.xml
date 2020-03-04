@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Mi Ruta</string>
-    <string name="notification">Introduce datos en el origen o el final para continuar</string>
+    <string name="notification">Selecciona datos en origen y final para continuar</string>
     <string name="radiologia">Radiología</string>
     <string name="urgencias">Urgencias</string>
+    <string name="reset">No hay ninguna selección</string>
+    <string name="establecida">RUTA ESTABLECIDA</string>
     <string name="traumatologia">Traumatología</string>
     <string name="ascensor">Ascensor</string>
     <string name="quirofano">Quirófano</string>
@@ -11,14 +13,20 @@
     <string name="farmacia">Farmacia</string>
     <string name="cuidados">UVI\nCuidados Intensivos</string>
     <string name="secuencia">rutafqcve</string>
+    <string name="maps">PLANTAS HOSPITAL</string>
     <string name="iniciar">INICIAR</string>
     <string name="avanzar">AVANZAR</string>
     <string name="finalizar">FINALIZAR</string>
+    <string name="retroceder">RETROCEDER</string>
+    <string name="plantas_hospital">PLANTAS HOSPITAL</string>
     <string name="seleccion">Selecciona origen y destino</string>
     <string name="seleccion_spin">Has seleccionado: </string>
     <string name="seleccion_spin_dos">Ninguna selección</string>
     <string name="hint_uno">Selecciona punto de Origen</string>
     <string name="hint_dos">Selecciona punto de Llegada</string>
     <string name="description_image_1">Planta Baja Hospital</string>
+    <string name="description_image_2">Planta 1ª Hospital</string>
+    <string name="description_image_3">Planta 2ª Hospital</string>
+    <string name="description_image_4">Planta 3ª Hospital</string>
     <string name="description_zoom_touch_close">Planta Baja Hospital</string>
 </resources>

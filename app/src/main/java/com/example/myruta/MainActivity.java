@@ -63,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         spinner_dos = findViewById(R.id.spinner_dos);
         spinner.setItems(PUNTOS_SALIDA);
+
+        //Listeners para añadir en una notificación inferior el item seleccionado/No seleccionado->
+        //->en los spinners
         spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 
             @Override
@@ -102,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (spin >= 0 && spin_dos >= 0) {
 
+            //Se instancia la clase Grafo_android para llamar al metodo agregarRuta
+            // ** Importante ** Modificar secuencia si se quieres introducir nuevas paradas
             Grafo_Android g = new Grafo_Android(getString(R.string.secuencia));
             g.agregarRuta('r', 'u', 5);
             g.agregarRuta('r', 't', 3);
@@ -133,15 +138,15 @@ public class MainActivity extends AppCompatActivity {
 
             //medimos la longitud de la ruta por las paradas
             sc = contador.length();
-            //sc -= 2;
 
-            //metodo intent para pasar valor variables entre activitys
+            //metodo intent para pasar valor variables entre activitys y para pasar a ->
+            // -> la siguiente activity
             Intent intent = new Intent(this, StepViewActivity.class);
             intent.putExtra("respuesta", (contador));
             intent.putExtra("message", Integer.toString(sc));
             startActivity(intent);
         } else {
-            Toast.makeText(MainActivity.this, getString(R.string.seleccion), Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, getString(R.string.notification), Toast.LENGTH_LONG).show();
         }
     }
             /* Se coje el primer caracter del string origen y fin introducidos en los textView
@@ -174,12 +179,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickbtnReset(View v) {
 
-        spinner.setText(getString(R.string.hint_uno));
-        spinner_dos.setText(getString(R.string.hint_dos));
-        contador = "";
-        respuesta = "";
-        spin = -1;
-        spin_dos = -1;
-
+        if (spinner.getText() != getString(R.string.hint_uno) ||
+                spinner_dos.getText() != getString(R.string.hint_dos)) {
+            spinner.setText(getString(R.string.hint_uno));
+            spinner_dos.setText(getString(R.string.hint_dos));
+            contador = "";
+            respuesta = "";
+            spin = -1;
+            spin_dos = -1;
+        } else {
+            Toast.makeText(MainActivity.this, getString(R.string.reset), Toast.LENGTH_LONG).show();
+        }
     }
 }
