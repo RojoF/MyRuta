@@ -22,7 +22,11 @@ public class SplashScreenActivity extends Activity {
 
             @TargetApi(19)
             private void hideVirtualButtons() {
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
             }
 
             @SuppressLint("ResourceType")
@@ -32,10 +36,14 @@ public class SplashScreenActivity extends Activity {
 
                 //Establece orientación
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
                 //Oculta la barra
                 requestWindowFeature(Window.FEATURE_NO_TITLE);
+
                 //Quitamos barra de notificaciones
-                this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
                 //Esconder botones en el splash (solo para versiones superiores a kitkat)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     hideVirtualButtons();
