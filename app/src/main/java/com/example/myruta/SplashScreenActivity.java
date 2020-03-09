@@ -35,7 +35,7 @@ public class SplashScreenActivity extends Activity {
                 super.onCreate(savedInstanceState);
 
                 //Establece orientación
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
                 //Oculta la barra
                 requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -57,7 +57,7 @@ public class SplashScreenActivity extends Activity {
 
                         //Empieza la siguiente actividad
                         Intent mainIntent = new Intent().setClass(
-                                SplashScreenActivity.this, MainActivity.class);
+                                SplashScreenActivity.this, EmailPasswordActivity.class);
                         startActivity(mainIntent);
 
                         // Cierra la actividad

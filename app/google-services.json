@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "636147476030",
+    "firebase_url": "https://loginuser-b07d6.firebaseio.com",
+    "project_id": "loginuser-b07d6",
+    "storage_bucket": "loginuser-b07d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636147476030:android:6e3ba3f3a312214829d36f",
+        "android_client_info": {
+          "package_name": "com.example.myruta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "636147476030-1iqij2rr7a6f8503sgcnok0v30tl1s9r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaiFF4QZPniM-RVxD9oND3Y_8mzubW-pQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "636147476030-1iqij2rr7a6f8503sgcnok0v30tl1s9r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
