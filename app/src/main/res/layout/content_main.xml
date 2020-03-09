@@ -14,11 +14,23 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
+        android:id="@+id/txtUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentEnd="true"
+        android:padding="5dp"
+        android:textColor="#FF5722"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
         android:text="ESTABLECE UNA RUTA"
         android:textAlignment="center"
         android:textColor="#000000"
@@ -90,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinner_dos"
         android:layout_centerInParent="false"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="115dp"
         android:background="@drawable/myrect"
         android:backgroundTint="#000000"
         android:enabled="true"

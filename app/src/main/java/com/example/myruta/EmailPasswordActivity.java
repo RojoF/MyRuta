@@ -39,6 +39,7 @@ public class EmailPasswordActivity extends BaseActivity implements
     private TextView mStatusTextView;
     private TextView mDetailTextView;
     private EditText mEmailField;
+    private Button btnContinue;
     private EditText mPasswordField;
 
     // [START declare_auth]
@@ -53,6 +54,7 @@ public class EmailPasswordActivity extends BaseActivity implements
         // Views
         mStatusTextView = findViewById(R.id.status);
         mDetailTextView = findViewById(R.id.detail);
+        btnContinue = findViewById(R.id.btContinue);
         mEmailField = findViewById(R.id.fieldEmail);
         mPasswordField = findViewById(R.id.fieldPassword);
         setProgressBar(R.id.progressBar);
@@ -66,6 +68,7 @@ public class EmailPasswordActivity extends BaseActivity implements
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
+
     }
 
     // [START on_start_check_user]
@@ -75,6 +78,11 @@ public class EmailPasswordActivity extends BaseActivity implements
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
+        if (currentUser != null && currentUser.isEmailVerified()) {
+            btnContinue.setVisibility(View.VISIBLE);
+            Toast.makeText(EmailPasswordActivity.this, "Sesion abierta por: "
+                    + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
+        }
 
     }
     // [END on_start_check_user]
@@ -127,10 +135,16 @@ public class EmailPasswordActivity extends BaseActivity implements
                     @Override
                     public void onComplete(@androidx.annotation.NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:Success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(EmailPasswordActivity.this, "Sesion Iniciada por: " + user.getEmail(),
+                                    Toast.LENGTH_SHORT).show();
                             updateUI(user);
+
+                            if (user != null && user.isEmailVerified()) {
+                                btnContinue.setVisibility(View.VISIBLE);
+                            }
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -153,6 +167,10 @@ public class EmailPasswordActivity extends BaseActivity implements
 
     private void signOut() {
         mAuth.signOut();
+        btnContinue.setVisibility(View.INVISIBLE);
+        mEmailField.setText("");
+        mPasswordField.setText("");
+        Toast.makeText(EmailPasswordActivity.this, "Sesion Cerrada", Toast.LENGTH_SHORT).show();
         updateUI(null);
     }
 
@@ -212,8 +230,7 @@ public class EmailPasswordActivity extends BaseActivity implements
     private void updateUI(FirebaseUser user) {
         hideProgressBar();
         if (user != null) {
-            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
-                    user.getEmail(), user.isEmailVerified()));
+            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt, user.getEmail(), user.isEmailVerified()));
             //mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
             findViewById(R.id.emailPasswordButtons).setVisibility(View.GONE);
             findViewById(R.id.emailPasswordFields).setVisibility(View.GONE);
@@ -241,5 +258,11 @@ public class EmailPasswordActivity extends BaseActivity implements
         } else if (i == R.id.verifyEmailButton) {
             sendEmailVerification();
         }
+    }
+
+    public void onClickStart(View v) {
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

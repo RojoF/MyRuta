@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.StringTokenizer;
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             "vestuario",
             "esterización"
     };
-
+    private FirebaseAuth mAuth;
     MaterialSpinner spinner, spinner_dos;
     String contador = "";
     String respuesta = "";
@@ -45,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        TextView txUser = findViewById(R.id.txtUser);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-
+        mAuth = FirebaseAuth.getInstance();
         fab.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -59,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+        FirebaseUser user = mAuth.getCurrentUser();
+        txUser.setText("Usuario: " + user.getEmail());
         spinner = findViewById(R.id.spinner);
         spinner_dos = findViewById(R.id.spinner_dos);
         spinner.setItems(PUNTOS_SALIDA);

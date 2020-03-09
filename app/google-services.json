@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "636147476030-a2bq7fapnsf734f5n4akjcdeddiceqdn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myruta",
+            "certificate_hash": "e6d9b48de902c2dbc2dd53f8a2c2846a8a69436c"
+          }
+        },
+        {
           "client_id": "636147476030-1iqij2rr7a6f8503sgcnok0v30tl1s9r.apps.googleusercontent.com",
           "client_type": 3
         }
