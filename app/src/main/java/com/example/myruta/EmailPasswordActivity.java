@@ -42,40 +42,35 @@ public class EmailPasswordActivity extends BaseActivity implements
     private Button btnContinue;
     private EditText mPasswordField;
 
-    // [START declare_auth]
     private FirebaseAuth mAuth;
-    // [END declare_auth]
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emailpassword);
 
-        // Views
         mStatusTextView = findViewById(R.id.status);
         mDetailTextView = findViewById(R.id.detail);
         btnContinue = findViewById(R.id.btContinue);
         mEmailField = findViewById(R.id.fieldEmail);
         mPasswordField = findViewById(R.id.fieldPassword);
         setProgressBar(R.id.progressBar);
-        // Buttons
+
         findViewById(R.id.emailSignInButton).setOnClickListener(this);
         findViewById(R.id.emailCreateAccountButton).setOnClickListener(this);
         findViewById(R.id.signOutButton).setOnClickListener(this);
         findViewById(R.id.verifyEmailButton).setOnClickListener(this);
 
-        // [START initialize_auth]
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        // [END initialize_auth]
 
     }
 
-    // [START on_start_check_user]
+    // se crea onStart para realizar comprobación de sesion abierta
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
         if (currentUser != null && currentUser.isEmailVerified()) {
@@ -85,8 +80,6 @@ public class EmailPasswordActivity extends BaseActivity implements
         }
 
     }
-    // [END on_start_check_user]
-
 
     private void createAccount(String email, String password) {
         Log.d(TAG, "createAccount:" + email);
@@ -96,13 +89,13 @@ public class EmailPasswordActivity extends BaseActivity implements
 
         showProgressBar();
 
-        // [START create_user_with_email]
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@androidx.annotation.NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+
                             Log.d(TAG, "createUserWithEmail:Success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
@@ -119,7 +112,7 @@ public class EmailPasswordActivity extends BaseActivity implements
                         // [END_EXCLUDE]
                     }
                 });
-        // [END create_user_with_email]
+
     }
 
     private void signIn(String email, String password) {
@@ -162,7 +155,7 @@ public class EmailPasswordActivity extends BaseActivity implements
                         // [END_EXCLUDE]
                     }
                 });
-        // [END sign_in_with_email]
+
     }
 
     private void signOut() {
@@ -210,7 +203,7 @@ public class EmailPasswordActivity extends BaseActivity implements
 
         String email = mEmailField.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            mEmailField.setError("Introduce Email.");
+            mEmailField.setError("Introduce Email");
             valid = false;
         } else {
             mEmailField.setError(null);
@@ -218,7 +211,7 @@ public class EmailPasswordActivity extends BaseActivity implements
 
         String password = mPasswordField.getText().toString();
         if (TextUtils.isEmpty(password)) {
-            mPasswordField.setError("Introduce password.");
+            mPasswordField.setError("Introduce password");
             valid = false;
         } else {
             mPasswordField.setError(null);
@@ -230,7 +223,8 @@ public class EmailPasswordActivity extends BaseActivity implements
     private void updateUI(FirebaseUser user) {
         hideProgressBar();
         if (user != null) {
-            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt, user.getEmail(), user.isEmailVerified()));
+            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
+                    user.getEmail(), user.isEmailVerified()));
             //mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
             findViewById(R.id.emailPasswordButtons).setVisibility(View.GONE);
             findViewById(R.id.emailPasswordFields).setVisibility(View.GONE);

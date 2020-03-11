@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         TextView txUser = findViewById(R.id.txtUser);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        mAuth = FirebaseAuth.getInstance();
         fab.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -63,8 +62,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         txUser.setText("Usuario: " + user.getEmail());
+
         spinner = findViewById(R.id.spinner);
         spinner_dos = findViewById(R.id.spinner_dos);
         spinner.setItems(PUNTOS_SALIDA);
@@ -111,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
         // Condicional para que continue solo si hay datos seleccionados en los spinners
         if (spin >= 0 && spin_dos >= 0) {
 
-            //Se instancia la clase Grafo_android para llamar al metodo agregarRuta
-            // ** Importante ** Modificar secuencia si se quieres introducir nuevas paradas
+            // Se instancia la clase Grafo_android para llamar al metodo agregarRuta
+            // ** MUY Importante ** Modificar secuencia si se quieres introducir nuevas paradas
             Grafo_Android g = new Grafo_Android(getString(R.string.secuencia));
             g.agregarRuta('r', 'u', 5);
             g.agregarRuta('r', 't', 3);
