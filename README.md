@@ -7,4 +7,4 @@ Algoritmo de Dijkstra
 
 By: @SpecialistaRojo
 
-![Optional Text](readme_myruta.png)
+![Alt Text](timeline.gif)
